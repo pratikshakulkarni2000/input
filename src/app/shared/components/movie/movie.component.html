@@ -1,0 +1,33 @@
+<div class="card my-4">
+  <figure class="movieCard">
+    <img [src]="movie.image" [alt]="movie.title" />
+    <figcaption>
+      <div class="titleInfo">
+        <div class="row">
+          <div class="col-md-10">
+            <h2>{{ movie.title }}</h2>
+          </div>
+          <div class="col-md-2">
+            <h3>
+              <small
+                class="badge"
+                [ngClass]="{
+                  'badge-success': movie.rating >= 4,
+                  'badge-warning': movie.rating >= 3 && movie.rating < 4,
+                  'badge-danger': movie.rating < 3
+                }"
+              >
+                {{ movie.rating }}
+              </small>
+            </h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="overview">
+        <h5>{{movie.title}}</h5>
+        <p>{{movie.overview}}</p>
+      </div>
+    </figcaption>
+  </figure>
+</div>

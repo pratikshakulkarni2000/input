@@ -1,0 +1,65 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card mb-4">
+        <div class="card-body"
+            [ngClass]="{
+                notAvailable : mobile.isAvailable
+            }"
+        >
+          <div class="row">
+            <div class="col-md-3">
+              <div class="img-container">
+                <img
+                  [src]="mobile.image || 'https://placehold.net/600x600.png'"
+                  [alt]="mobile.name"
+                />
+              </div>
+            </div>
+            <div class="col-md-7">
+              <h2>
+                {{ mobile.name }}
+                <small
+                  class="badge"
+                  [ngClass]="{
+                    'badge-success': mobile.rating >= 4,
+                    'badge-warning': mobile.rating >= 3 && mobile.rating < 4,
+                    'badge-danger': mobile.rating < 3
+                  }"
+                >
+                  {{ mobile.rating }}
+                </small>
+              </h2>
+              <h4 class="text-muted">Features</h4>
+              <ul class="list-group list-group-flush">
+                <li
+                  *ngFor="let Features of mobile.features"
+                  class="list-group-item"
+                >
+                  {{ Features }}
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-2">
+              <h4>
+                {{ mobile.price - mobile.price * 0.15 | currency : "INR" }}
+                <br />
+                <small>
+                  <del>
+                    {{ mobile.price | currency : "INR" }}
+                  </del>
+                </small>
+              </h4>
+              <strong class="text-danger" *ngIf="mobile.noOfItems < 10">
+                Only {{ mobile.noOfItems }} left !
+              </strong>
+            </div>
+          </div>
+        </div>
+        <p class="text-danger isAvailable" *ngIf="mobile.isAvailable">
+          Product is not available !
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
